@@ -1,0 +1,21 @@
+#cloud-config
+
+hostname: core{{ N }}
+coreos:
+    etcd:
+        name: core{{ N }}
+        discovery: https://discovery.etcd.io/e73d43354113170b65a0084a864648ab
+        addr: 10.0.0.10{{ N }}:4001
+        peer-addr: 10.0.0.10{{ N }}:7001
+    units:
+      - name: static.network
+      - runtime: true
+        content: |
+          [Match]
+          Name=enp0s17
+
+          [Network]
+          DHCP=none
+          DNS=8.8.8.8
+          Address=10.0.0.10{{ N }}/24
+          Gateway=10.0.0.1
