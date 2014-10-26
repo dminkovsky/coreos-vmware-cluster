@@ -13,7 +13,6 @@ coreos:
       - name: fleet.service
         command: start
       - name: static.network
-        runtime: true
         content: |
           [Match]
           Driver=pcnet32
