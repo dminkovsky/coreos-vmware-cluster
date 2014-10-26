@@ -10,6 +10,8 @@ coreos:
     units:
       - name: etcd.service
         command: start
+      - name: fleet.service
+        command: start
       - name: static.network
         runtime: true
         content: |
