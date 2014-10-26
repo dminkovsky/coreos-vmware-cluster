@@ -4,15 +4,17 @@ hostname: core{{ N }}
 coreos:
     etcd:
         name: core{{ N }}
-        discovery: https://discovery.etcd.io/e73d43354113170b65a0084a864648ab
+        discovery: https://discovery.etcd.io/3c1643545c1689ecee28b03d14a30aa8
         addr: 10.0.0.10{{ N }}:4001
         peer-addr: 10.0.0.10{{ N }}:7001
     units:
+      - name: etcd.service
+        command: start
       - name: static.network
-      - runtime: true
+        runtime: true
         content: |
           [Match]
-          Name=enp0s17
+          Driver=pcnet32
 
           [Network]
           DHCP=none
