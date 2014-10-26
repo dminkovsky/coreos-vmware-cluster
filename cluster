@@ -4,7 +4,9 @@ BASE_VMX="${BASE}/${BASE}.vmx"
 CONFIG_DRIVE=config_drive
 
 prep() {
-    curl -LO "http://alpha.release.core-os.net/amd64-usr/current/$BASE.zip"
+    if [ "$1" = -download ]; then
+        curl -LO "http://alpha.release.core-os.net/amd64-usr/current/$BASE.zip"
+    fi
     unzip -o "$BASE.zip" -d "$BASE"
     vmware-vdiskmanager -x 75GB "${BASE}/${BASE}_image.vmdk"
     # VMWare memory size must be multiple of 4
@@ -47,7 +49,7 @@ clone() {
 
 case "$1" in
     prep)
-        prep
+        prep "$2"
         ;;
     clone)
         clone "$2"
