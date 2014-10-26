@@ -22,3 +22,9 @@ coreos:
           DNS=8.8.8.8
           Address=10.0.0.10{{ N }}/24
           Gateway=10.0.0.1
+write_files:
+  - path: /etc/environment
+    permissions: 0644
+    owner: root
+    content: |
+      COREOS_PRIVATE_IPV4=10.0.0.10{{ N }}
