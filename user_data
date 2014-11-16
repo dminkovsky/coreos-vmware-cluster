@@ -5,8 +5,8 @@ coreos:
     etcd:
         name: core{{ N }}
         discovery: https://discovery.etcd.io/3c1643545c1689ecee28b03d14a30aa8
-        addr: 10.0.0.10{{ N }}:4001
-        peer-addr: 10.0.0.10{{ N }}:7001
+        addr: 10.0.22.10{{ N }}:4001
+        peer-addr: 10.0.22.10{{ N }}:7001
     units:
       - name: etcd.service
         command: start
@@ -20,11 +20,11 @@ coreos:
           [Network]
           DHCP=none
           DNS=8.8.8.8
-          Address=10.0.0.10{{ N }}/24
-          Gateway=10.0.0.1
+          Address=10.0.22.10{{ N }}/24
+          Gateway=10.0.22.2
 write_files:
   - path: /etc/environment
     permissions: 0644
     owner: root
     content: |
-      COREOS_PRIVATE_IPV4=10.0.0.10{{ N }}
+      COREOS_PRIVATE_IPV4=10.0.22.10{{ N }}
