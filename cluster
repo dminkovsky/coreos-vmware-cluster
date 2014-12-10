@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Get the directory in which the script resides
+pushd $(dirname $0) > /dev/null; CURRABSPATH=$(readlink -nf "$(pwd)"); popd > /dev/null;
+
 BASE=coreos_production_vmware_insecure
 BASE_VMX="${BASE}/${BASE}.vmx"
 CONFIG_DRIVE=config_drive
