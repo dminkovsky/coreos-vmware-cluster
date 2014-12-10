@@ -4,6 +4,9 @@ BASE_VMX="${BASE}/${BASE}.vmx"
 CONFIG_DRIVE=config_drive
 
 prep() {
+    ln -s /Applications/VMware\ Fusion.app/Contents/Library/vmrun /usr/local/bin
+    ln -s /Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager /usr/local/bin
+    ln -s /Applications/VMware\ Fusion.app/Contents/Library/mkisofs /usr/local/bin
     if [ "$1" = -download ]; then
         curl -LO "http://alpha.release.core-os.net/amd64-usr/current/$BASE.zip"
     fi
