@@ -20,8 +20,10 @@ build_cd() {
     local n="$1"
     local cd="$CONFIG_DRIVE"
     local cd_label=config-2  # This name required by cloudinit convention
-    local cd_user_data="${cd}/openstack/latest/user_data"
+    local cd_root="${cd}/openstack/latest"
+    local cd_user_data="${cd_root}/user_data"
 
+    mkdir -p "$cd_root"
     sed -e "s/{{ N }}/${n}/g" user_data > "$cd_user_data"
     mkisofs -R -V "$cd_label" -o "${n}/${cd}.iso" "${cd}/"
 }
